@@ -49,7 +49,7 @@ function ReportTable({ title, subtitle, headers, rows, filename, total }: { titl
       {rows.length === 0 ? (
         <p className="text-sm text-ink-muted">No data for the current filters.</p>
       ) : (
-        <div className="-mx-2 overflow-x-auto">
+        <div className="-mx-2 overflow-x-auto" tabIndex={0} role="region" aria-label={`${title} (scrollable table)`}>
           <table className="w-full min-w-[420px] text-left text-xs">
             <caption className="sr-only">{title}</caption>
             <thead className="text-[10px] uppercase tracking-[0.1em] text-ink-faint">

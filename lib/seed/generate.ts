@@ -966,13 +966,11 @@ function buildActivities(rng: Rng, businesses: Business[], products: Product[], 
 
   const chosen = cands.length > TARGETS.activities ? rng.sample(cands, TARGETS.activities) : cands
   // pad with historical events if the 60-day window had fewer than needed
-  let pad2 = 0
   while (chosen.length < TARGETS.activities) {
     const b = rng.pick(businesses.filter((x) => x.approvalStatus === 'approved'))
     const at = Math.min(Date.parse(b.updatedAt), window - rng.int(1, 120) * DAY)
     const who = actor()
     chosen.push({ id: '', at: iso(Math.max(at, Date.parse(b.createdAt))), actorName: who.n, actorRole: who.r, action: 'business.updated', entityType: 'business', entityId: b.id, entityName: b.name, message: `${b.name} listing details were updated.` })
-    pad2++
   }
   chosen.sort((a, b) => a.at.localeCompare(b.at))
   return chosen.map((a, i) => ({ ...a, id: `act-${pad(i + 1, 3)}` })).reverse()

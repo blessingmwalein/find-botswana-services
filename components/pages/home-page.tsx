@@ -273,7 +273,7 @@ export function HomePage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">Grow your reach</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-forest">Put your business on the map.</h2>
-            <p className="mt-2 text-sm text-ink-muted">Create a listing and help customers find you closer to home.</p>
+            <p className="mt-2 text-sm text-[#4a554d]">Create a listing and help customers find you closer to home.</p>
           </div>
           <Link href="/business/register" className="rounded-lg bg-brand px-5 py-3 text-center text-sm font-semibold text-white hover:bg-forest">
             List your business <ArrowRight className="ml-1 inline size-4" />

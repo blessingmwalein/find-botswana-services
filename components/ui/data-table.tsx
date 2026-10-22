@@ -78,7 +78,7 @@ export function DataTable<T>({
 
   return (
     <div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${caption} (scrollable table)`}>
         <table className="w-full min-w-[640px] text-left text-xs">
           <caption className="sr-only">{caption}</caption>
           <thead className="bg-table-head text-[10px] uppercase tracking-[0.1em] text-ink-faint">
