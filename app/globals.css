@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+
+  /* Semantic names for the exact values the original design already used. */
+  --color-brand: #176b45;
+  --color-forest: #12372a;
+  --color-mint: #eef7ef;
+  --color-sage: #dcecdf;
+  --color-moss: #3b8e5c;
+  --color-line: #e3e7e1;
+  --color-line-strong: #dfe7df;
+  --color-line-green: #bed6c4;
+  --color-ink: #202720;
+  --color-ink-muted: #68736a;
+  --color-ink-faint: #8b978d;
+  --color-canvas: #f7f8f5;
+  --color-canvas-admin: #f5f7f4;
+  --color-hover-row: #fbfcfa;
+  --color-divider: #edf0eb;
+  --color-table-head: #f7f9f6;
+  --color-on-forest: #b8d0bd;
+  --color-on-forest-soft: #a7d0b2;
+
+  /* Status colours: amber is the original "pending" colour; red and blue follow the same soft-tint pattern. */
+  --color-warn-bg: #fcf5e8;
+  --color-warn: #936d22;
+  --color-danger-bg: #fbeeed;
+  --color-danger: #9b3a35;
+  --color-info-bg: #e5eff2;
+  --color-info: #2f6573;
+  --color-neutral-bg: #eef2ed;
+  --color-neutral: #5b665d;
+
+  /* Avatar / artwork tints from the original design. */
+  --color-tone-sage: #dcecdf;
+  --color-tone-sand: #e9e2cc;
+  --color-tone-clay: #e6dcd5;
+  --color-tone-sky: #d9e6e9;
+  --color-tone-mist: #e1e1eb;
+  --color-tone-stone: #e4ddd0;
+}
+
+/* Base styles live in @layer base so Tailwind utilities (text-xs, outline-none …) can override them.
+   Unlayered rules would beat every utility regardless of specificity. */
+@layer base {
+  :root { --background: #f7f8f5; --foreground: #202720; --border: #e3e7e1; --ring: #176b45; --primary: #176b45; --primary-foreground: #ffffff; --muted: #eef3ed; --muted-foreground: #68736a; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+  button, input, select, textarea { font: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #cfe3d2; color: #12372a; }
+
+  /* Visible keyboard focus everywhere, in the brand colour. */
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Leaflet map pins (divIcons) use the brand palette. */
+.fb-pin { background: transparent; border: 0; }
+.fb-pin-dot {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9999px;
+  background: #176b45; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(18, 55, 42, 0.35); color: #fff;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.fb-pin-dot svg { width: 14px; height: 14px; }
+.fb-pin-selected .fb-pin-dot { background: #12372a; transform: scale(1.3); box-shadow: 0 0 0 4px rgba(23, 107, 69, 0.28), 0 2px 10px rgba(18, 55, 42, 0.45); }
+.fb-cluster { background: transparent; border: 0; }
+.fb-cluster-dot {
+  display: grid; place-items: center; border-radius: 9999px; background: rgba(23, 107, 69, 0.92); color: #fff;
+  border: 3px solid rgba(255, 255, 255, 0.85); box-shadow: 0 2px 10px rgba(18, 55, 42, 0.35); font-weight: 700; font-size: 12px;
+}
+.leaflet-container { font-family: Arial, Helvetica, sans-serif; background: #e8efe8; }
+.leaflet-control-zoom a { color: #12372a !important; }
+.leaflet-popup-content-wrapper { border-radius: 12px; }
+
+/* Dialog + drawer motion (base-ui data attributes). */
+.fb-backdrop { transition: opacity 0.18s ease; }
+.fb-backdrop[data-starting-style], .fb-backdrop[data-ending-style] { opacity: 0; }
+.fb-popup { transition: opacity 0.18s ease, transform 0.18s ease; }
+.fb-popup[data-starting-style], .fb-popup[data-ending-style] { opacity: 0; transform: translateY(8px) scale(0.985); }
+.fb-drawer { transition: transform 0.22s ease; }
+.fb-drawer[data-starting-style], .fb-drawer[data-ending-style] { transform: translateX(100%); }
